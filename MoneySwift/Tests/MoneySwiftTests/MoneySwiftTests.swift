@@ -29,3 +29,8 @@ func testCurrency() async throws {
     #expect(Money.dollar(1).currency() == "USD", "Dollarの通貨はUSD")
     #expect(Money.franc(1).currency() == "CHF", "Francの通貨はCHF")
 }
+
+@Test("違うクラス同士の比較")
+func testDifferentClassEquality() async throws {
+    #expect(Money(amount: 10, currency: "CHF").equals(Franc(amount: 10, currency: "CHF")) == true, "MoneyとFrancの比較")
+}

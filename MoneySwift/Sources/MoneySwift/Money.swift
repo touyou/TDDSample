@@ -9,7 +9,7 @@ class Money: CustomStringConvertible {
 
   func equals(_ other: Any) -> Bool {
     let money: Money = other as! Money
-    return _amount == money._amount && type(of: self) == type(of: money)
+    return _amount == money._amount && _currency == money.currency()
   }
 
   func currency() -> String {
