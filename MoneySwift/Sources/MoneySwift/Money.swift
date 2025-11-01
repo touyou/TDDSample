@@ -1,6 +1,7 @@
 protocol Money {
   var _amount: Int { get }
   var _currency: String { get }
+  init(amount: Int, currency: String)
   func equals(_ other: Any) -> Bool
   func times(_ multiplier: Int) -> Money
   func currency() -> String
@@ -19,7 +20,7 @@ extension Money {
 
 class MoneyFactory {
   static func dollar(_ amount: Int) -> some Money {
-    return Dollar(amount)
+    return Dollar(amount: amount, currency: "USD")
   }
 
   static func franc(_ amount: Int) -> some Money {
