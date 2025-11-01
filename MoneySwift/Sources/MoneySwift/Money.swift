@@ -15,4 +15,8 @@ class MoneyFactory {
   static func dollar(_ amount: Int) -> some Money {
     return Dollar(amount)
   }
+
+  static func franc(_ amount: Int) -> some Money {
+    return Franc(amount)
+  }
 }

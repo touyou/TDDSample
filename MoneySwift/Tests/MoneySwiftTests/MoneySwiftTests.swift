@@ -12,14 +12,14 @@ func testMultiplication() async throws {
 func testEquality() async throws {
     #expect(MoneyFactory.dollar(5).equals(MoneyFactory.dollar(5)) == true, "equals() is true")
     #expect(MoneyFactory.dollar(5).equals(MoneyFactory.dollar(6)) == false, "equals() is false")
-    #expect(Franc(5) == Franc(5), "equals() is true")
-    #expect(Franc(5) != Franc(6), "equals() is false")
-    #expect(Franc(5).equals(MoneyFactory.dollar(5)) == false, "5CHF != $5")
+    #expect(MoneyFactory.franc(5).equals(MoneyFactory.franc(5)) == true, "equals() is true")
+    #expect(MoneyFactory.franc(5).equals(MoneyFactory.franc(6)) == false, "equals() is false")
+    #expect(MoneyFactory.franc(5).equals(MoneyFactory.dollar(5)) == false, "5CHF != $5")
 }
 
 @Test("Francの掛け算")
 func testFrancMultiplication() async throws {
-    let five = Franc(5)
-    #expect(five.times(2) as! Franc == Franc(10), "5CHF * 2 = 10CHF")
-    #expect(five.times(3) as! Franc == Franc(15), "5CHF * 3 = 15CHF")
+    let five: Money = MoneyFactory.franc(5)
+    #expect(five.times(2).equals(MoneyFactory.franc(10)) == true, "5CHF * 2 = 10CHF")
+    #expect(five.times(3).equals(MoneyFactory.franc(15)) == true, "5CHF * 3 = 15CHF")
 }
