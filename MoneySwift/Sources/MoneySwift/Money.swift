@@ -11,6 +11,10 @@ extension Money {
     let money: any Money = other as! any Money
     return _amount == money._amount && type(of: self) == type(of: money)
   }
+
+  func currency() -> String {
+    return _currency
+  }
 }
 
 class MoneyFactory {
