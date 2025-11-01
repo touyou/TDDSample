@@ -6,13 +6,13 @@ protocol Money {
 
 extension Money {
   func equals(_ other: Any) -> Bool {
-    let money: Money = other as! Money
+    let money: any Money = other as! any Money
     return amount == money.amount && type(of: self) == type(of: money)
   }
 }
 
 class MoneyFactory {
-  static func dollar(_ amount: Int) -> Money {
+  static func dollar(_ amount: Int) -> some Money {
     return Dollar(amount)
   }
 }
