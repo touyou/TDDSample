@@ -17,7 +17,7 @@ class Money: CustomStringConvertible {
   }
 
   func times(_ multiplier: Int) -> Money {
-    fatalError("This method should be overridden")
+    return Money(amount: _amount * multiplier, currency: _currency)
   }
 
   var description: String {
