@@ -1,29 +1,34 @@
-protocol Money {
-  var _amount: Int { get }
-  var _currency: String { get }
-  init(amount: Int, currency: String)
-  func equals(_ other: Any) -> Bool
-  func times(_ multiplier: Int) -> Money
-  func currency() -> String
-}
+class Money: CustomStringConvertible {
+  private(set) var _amount: Int
+  private(set) var _currency: String
 
-extension Money {
+  init(amount: Int, currency: String) {
+    self._amount = amount
+    self._currency = currency
+  }
+
   func equals(_ other: Any) -> Bool {
-    let money: any Money = other as! any Money
+    let money: Money = other as! Money
     return _amount == money._amount && type(of: self) == type(of: money)
   }
 
   func currency() -> String {
     return _currency
   }
-}
 
-class MoneyFactory {
-  static func dollar(_ amount: Int) -> some Money {
-    return Dollar(amount: amount, currency: "USD")
+  func times(_ multiplier: Int) -> Money {
+    fatalError("This method should be overridden")
   }
 
-  static func franc(_ amount: Int) -> some Money {
-    return Franc(amount: amount, currency: "CHF")
+  var description: String {
+    return "\(_amount) \(_currency)"
+  }
+
+  static func dollar(_ amount: Int) -> Money {
+    return Money(amount: amount, currency: "USD")
+  }
+
+  static func franc(_ amount: Int) -> Money {
+    return Money(amount: amount, currency: "CHF")
   }
 }
