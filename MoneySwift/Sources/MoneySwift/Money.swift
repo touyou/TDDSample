@@ -20,6 +20,10 @@ class Money: CustomStringConvertible {
     return Money(amount: _amount * multiplier, currency: _currency)
   }
 
+  func plus(_ addend: Money) -> Money {
+    return Money(amount: _amount + addend._amount, currency: _currency)
+  }
+
   var description: String {
     return "\(_amount) \(_currency)"
   }

@@ -20,3 +20,9 @@ func testCurrency() async throws {
     #expect(Money.dollar(1).currency() == "USD", "Dollarの通貨はUSD")
     #expect(Money.franc(1).currency() == "CHF", "Francの通貨はCHF")
 }
+
+@Test("$5 + $5 = $10")
+func testSimpleAddition() async throws {
+    let sum = Money.dollar(5).plus(Money.dollar(5))
+    #expect(sum.equals(Money.dollar(10)) == true, "$5 + $5 = $10")
+}
