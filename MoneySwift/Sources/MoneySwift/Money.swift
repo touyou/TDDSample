@@ -1,4 +1,4 @@
-class Money: CustomStringConvertible {
+class Money: Expression, CustomStringConvertible {
   private(set) var _amount: Int
   private(set) var _currency: String
 
@@ -20,7 +20,7 @@ class Money: CustomStringConvertible {
     return Money(amount: _amount * multiplier, currency: _currency)
   }
 
-  func plus(_ addend: Money) -> Money {
+  func plus(_ addend: Money) -> Expression {
     return Money(amount: _amount + addend._amount, currency: _currency)
   }
 

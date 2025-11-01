@@ -23,6 +23,9 @@ func testCurrency() async throws {
 
 @Test("$5 + $5 = $10")
 func testSimpleAddition() async throws {
-    let sum = Money.dollar(5).plus(Money.dollar(5))
-    #expect(sum.equals(Money.dollar(10)) == true, "$5 + $5 = $10")
+    let five = Money.dollar(5)
+    let sum: Expression = five.plus(five)
+    let bank = Bank()
+    let reduced = bank.reduce(sum, to: "USD")
+    #expect(reduced.equals(Money.dollar(10)) == true, "$5 + $5 = $10")
 }
