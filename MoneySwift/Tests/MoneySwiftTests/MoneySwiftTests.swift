@@ -29,3 +29,12 @@ func testSimpleAddition() async throws {
     let reduced = bank.reduce(sum, to: "USD")
     #expect(reduced.equals(Money.dollar(10)) == true, "$5 + $5 = $10")
 }
+
+@Test("Sumクラス")
+func testPlusReturnsSum() async throws {
+    let five = Money.dollar(5)
+    let result = five.plus(five)
+    let sum = result as! Sum
+    #expect(five.equals(sum.augend) == true, "augend is correct")
+    #expect(five.equals(sum.addend) == true, "addend is correct")
+}

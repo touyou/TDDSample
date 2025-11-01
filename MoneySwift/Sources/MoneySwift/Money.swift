@@ -21,7 +21,7 @@ class Money: Expression, CustomStringConvertible {
   }
 
   func plus(_ addend: Money) -> Expression {
-    return Money(amount: _amount + addend._amount, currency: _currency)
+    return Sum(augend: self, addend: addend)
   }
 
   var description: String {
