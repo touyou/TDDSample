@@ -3,9 +3,9 @@ struct Dollar: Money {
     self.amount = amount
   }
 
-  internal let amount: Int
+  private(set) var amount: Int
 
-  func times(_ multiplier: Int) -> Dollar {
+  func times(_ multiplier: Int) -> some Money {
     return Dollar(amount * multiplier)
   }
 
