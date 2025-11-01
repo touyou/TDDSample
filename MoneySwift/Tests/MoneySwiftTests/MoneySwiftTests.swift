@@ -38,3 +38,11 @@ func testPlusReturnsSum() async throws {
     #expect(five.equals(sum.augend) == true, "augend is correct")
     #expect(five.equals(sum.addend) == true, "addend is correct")
 }
+
+@Test("reduce Sum")
+func testReduceSum() async throws {
+    let sum = Sum(augend: .dollar(3), addend: .dollar(4))
+    let bank = Bank()
+    let result = bank.reduce(sum, to: "USD")
+    #expect(result.equals(Money.dollar(7)) == true, "3 + 4 = 7")
+}

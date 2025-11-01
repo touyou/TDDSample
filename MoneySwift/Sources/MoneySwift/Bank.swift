@@ -1,6 +1,7 @@
 class Bank {
     func reduce(_ source: Expression, to: String) -> Money {
-        // 仮実装
-        return Money.dollar(10)
+        let sum = source as! Sum
+        let amount = sum.augend._amount + sum.addend._amount
+        return Money(amount: amount, currency: to)
     }
 }
