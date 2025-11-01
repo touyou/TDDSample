@@ -8,6 +8,6 @@ struct Franc: Money {
   private(set) var _currency: String
 
   func times(_ multiplier: Int) -> Money {
-    return MoneyFactory.franc(_amount * multiplier)
+    return Franc(amount: _amount * multiplier, currency: _currency)
   }
 }
