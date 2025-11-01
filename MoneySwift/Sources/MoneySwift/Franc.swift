@@ -9,6 +9,10 @@ struct Franc: Money {
     return Franc(amount * multiplier)
   }
 
+  func currency() -> String {
+    return "CHF"
+  }
+
   static func ==(lhs: Franc, rhs: Franc) -> Bool {
     return lhs.equals(rhs)
   }

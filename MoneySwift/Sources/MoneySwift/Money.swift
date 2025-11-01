@@ -2,6 +2,7 @@ protocol Money {
   var amount: Int { get }
   func equals(_ other: Any) -> Bool
   func times(_ multiplier: Int) -> Self
+  func currency() -> String
 }
 
 extension Money {

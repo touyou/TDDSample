@@ -23,3 +23,9 @@ func testFrancMultiplication() async throws {
     #expect(five.times(2).equals(MoneyFactory.franc(10)) == true, "5CHF * 2 = 10CHF")
     #expect(five.times(3).equals(MoneyFactory.franc(15)) == true, "5CHF * 3 = 15CHF")
 }
+
+@Test("通貨の概念")
+func testCurrency() async throws {
+    #expect(MoneyFactory.dollar(1).currency() == "USD", "Dollarの通貨はUSD")
+    #expect(MoneyFactory.franc(1).currency() == "CHF", "Francの通貨はCHF")
+}
