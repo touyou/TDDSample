@@ -1,5 +1,6 @@
 protocol Money {
-  var amount: Int { get }
+  var _amount: Int { get }
+  var _currency: String { get }
   func equals(_ other: Any) -> Bool
   func times(_ multiplier: Int) -> Self
   func currency() -> String
@@ -8,7 +9,7 @@ protocol Money {
 extension Money {
   func equals(_ other: Any) -> Bool {
     let money: any Money = other as! any Money
-    return amount == money.amount && type(of: self) == type(of: money)
+    return _amount == money._amount && type(of: self) == type(of: money)
   }
 }
 

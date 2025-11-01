@@ -1,16 +1,18 @@
 struct Franc: Money {
   init(_ amount: Int) {
-    self.amount = amount
+    self._amount = amount
+    self._currency = "CHF"
   }
 
-  private(set) var amount: Int
+  private(set) var _amount: Int
+  private(set) var _currency: String
 
   func times(_ multiplier: Int) -> Self {
-    return Franc(amount * multiplier)
+    return Franc(_amount * multiplier)
   }
 
   func currency() -> String {
-    return "CHF"
+    return _currency
   }
 
   static func ==(lhs: Franc, rhs: Franc) -> Bool {

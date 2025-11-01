@@ -1,16 +1,18 @@
 struct Dollar: Money {
   init(_ amount: Int) {
-    self.amount = amount
+    self._amount = amount
+    self._currency = "USD"
   }
 
-  private(set) var amount: Int
+  private(set) var _amount: Int
+  private(set) var _currency: String
 
   func times(_ multiplier: Int) -> Self {
-    return Dollar(amount * multiplier)
+    return Dollar(_amount * multiplier)
   }
 
   func currency() -> String {
-    return "USD"
+    return _currency
   }
 
   static func ==(lhs: Dollar, rhs: Dollar) -> Bool {
