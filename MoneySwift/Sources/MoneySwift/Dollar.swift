@@ -7,7 +7,7 @@ struct Dollar: Money {
   private(set) var _amount: Int
   private(set) var _currency: String
 
-  func times(_ multiplier: Int) -> Self {
+  func times(_ multiplier: Int) -> Money {
     return Dollar(_amount * multiplier)
   }
 
