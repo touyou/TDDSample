@@ -88,3 +88,14 @@ func testSumPlusMoney() async throws {
     let result = bank.reduce(sum, to: "USD")
     #expect(Money.dollar(15).equals(result) == true, "($5 + 10CHF) + $5 = $15")
 }
+
+@Test("Expression.times")
+func testSumTimes() async throws {
+    let fiveBucks: Expression = Money.dollar(5)
+    let tenFrancs: Expression = Money.franc(10)
+    let bank = Bank()
+    bank.addRate(from: "CHF", to: "USD", rate: 2)
+    let sum: Expression = Sum(augend: fiveBucks, addend: tenFrancs).times(2)
+    let result = bank.reduce(sum, to: "USD")
+    #expect(Money.dollar(20).equals(result) == true, "($5 + 10CHF) * 2 = $20")
+}
