@@ -77,3 +77,14 @@ func testMixedAddition() async throws {
     let result = bank.reduce(fiveBucks.plus(tenFrancs), to: "USD")
     #expect(Money.dollar(10).equals(result) == true, "$5 + 10CHF = $10")
 }
+
+@Test("Sum.plus")
+func testSumPlusMoney() async throws {
+    let fiveBucks: Expression = Money.dollar(5)
+    let tenFrancs: Expression = Money.franc(10)
+    let bank = Bank()
+    bank.addRate(from: "CHF", to: "USD", rate: 2)
+    let sum: Expression = Sum(augend: fiveBucks, addend: tenFrancs).plus(fiveBucks)
+    let result = bank.reduce(sum, to: "USD")
+    #expect(Money.dollar(15).equals(result) == true, "($5 + 10CHF) + $5 = $15")
+}

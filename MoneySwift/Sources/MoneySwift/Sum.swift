@@ -3,7 +3,7 @@ struct Sum: Expression{
   let addend: Expression
 
   func plus(_ addend: Expression) -> Expression {
-    return Money(amount: 0, currency: "")
+    return Sum(augend: self, addend: addend)
   }
 
   func reduce(with bank: Bank, to currency: String) -> Money {
