@@ -67,3 +67,13 @@ func testIdentityRate() async throws {
     let bank = Bank()
     #expect(bank.rate(from: "USD", to: "USD") == 1, "1 USD = 1 USD")
 }
+
+@Test("$5 + 10CHF = $10")
+func testMixedAddition() async throws {
+    let fiveBucks = Money.dollar(5)
+    let tenFrancs = Money.franc(10)
+    let bank = Bank()
+    bank.addRate(from: "CHF", to: "USD", rate: 2)
+    let result = bank.reduce(fiveBucks.plus(tenFrancs), to: "USD")
+    #expect(Money.dollar(10).equals(result) == true, "$5 + 10CHF = $10")
+}
