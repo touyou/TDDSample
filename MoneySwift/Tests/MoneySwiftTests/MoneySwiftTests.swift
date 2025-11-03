@@ -53,3 +53,17 @@ func testReduceMoney() async throws {
     let result = bank.reduce(Money.dollar(1), to: "USD")
     #expect(result.equals(Money.dollar(1)) == true, "reduce Money")
 }
+
+@Test("Moneyを変換して換算を行う")
+func tesxtReduceMoneyDifferentCurrency() async throws {
+    let bank = Bank()
+    bank.addRate(from: "CHF", to: "USD", rate: 2)
+    let result = bank.reduce(Money.franc(2), to: "USD")
+    #expect(result.equals(Money.dollar(1)) == true, "2CHF = $1")
+}
+
+@Test("Identity Rate")
+func testIdentityRate() async throws {
+    let bank = Bank()
+    #expect(bank.rate(from: "USD", to: "USD") == 1, "1 USD = 1 USD")
+}

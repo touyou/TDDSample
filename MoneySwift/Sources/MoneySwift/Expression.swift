@@ -1,3 +1,3 @@
 protocol Expression {
-  func reduce(to: String) -> Money
+  func reduce(with bank: Bank, to currency: String) -> Money
 }
