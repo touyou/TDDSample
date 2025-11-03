@@ -24,7 +24,10 @@ class TestCase:
 
     def run(self, result):
         result.testStarted()
-        self.setUp()
+        try:
+            self.setUp()
+        except:
+            result.testFailed()
         try:
             method = getattr(self, self.name)
             method()
@@ -57,6 +60,13 @@ class WasRun(TestCase):
     def tearDown(self):
         self.log = self.log + "tearDown "
 
+class WasFailedSetUp(TestCase):
+    def setUp(self):
+        raise Exception
+
+    def testMethod(self):
+        pass
+
 class TestCaseTest(TestCase):
     def setUp(self):
         self.result = TestResult()
@@ -88,12 +98,18 @@ class TestCaseTest(TestCase):
         suite.run(self.result)
         assert("2 run, 1 failed" == self.result.summary())
 
+    def testSetUpError(self):
+        test = WasFailedSetUp("testMethod")
+        test.run(self.result)
+        assert("1 run, 1 failed" == self.result.summary())
+
 suite = TestSuite()
 suite.add(TestCaseTest("testTemplateMethod"))
 suite.add(TestCaseTest("testResult"))
 suite.add(TestCaseTest("testFailedResult"))
 suite.add(TestCaseTest("testFailedResultFormatting"))
 suite.add(TestCaseTest("testSuite"))
+suite.add(TestCaseTest("testSetUpError"))
 result = TestResult()
 suite.run(result)
 print(result.summary())
