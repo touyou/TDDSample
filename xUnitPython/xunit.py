@@ -79,35 +79,35 @@ class TestCaseTest(TestCase):
     def testTemplateMethod(self):
         test = WasRun("testMethod")
         test.run()
-        assert("setUp testMethod tearDown " == test.log)
+        assert "setUp testMethod tearDown " == test.log, test.log
 
     def testResult(self):
         test = WasRun("testMethod")
         test.run()
-        assert("1 run, 0 failed" == test.result.summary())
+        assert "1 run, 0 failed" == test.result.summary(), test.result.summary()
 
     def testFailedResult(self):
         test = WasRun("testBrokenMethod")
         test.run()
-        assert("1 run, 1 failed" == test.result.summary())
+        assert "1 run, 1 failed" == test.result.summary(), test.result.summary()
 
     def testFailedResultFormatting(self):
         result = TestResult()
         result.testStarted()
         result.testFailed()
-        assert("1 run, 1 failed" == result.summary())
+        assert "1 run, 1 failed" == result.summary(), result.summary()
 
     def testSuite(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
         suite.run()
-        assert("2 run, 1 failed" == suite.summary())
+        assert "2 run, 1 failed" == suite.summary(), suite.summary()
 
     def testSetUpError(self):
         test = WasFailedSetUp("testMethod")
         test.run()
-        assert("1 run, 1 failed" == test.result.summary())
+        assert "1 run, 1 failed" == test.result.summary(), test.result.summary()
 
 suite = TestSuite()
 suite.add(TestCaseTest("testTemplateMethod"))
