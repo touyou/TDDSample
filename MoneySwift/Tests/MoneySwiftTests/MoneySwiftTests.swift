@@ -46,3 +46,10 @@ func testReduceSum() async throws {
     let result = bank.reduce(sum, to: "USD")
     #expect(result.equals(Money.dollar(7)) == true, "3 + 4 = 7")
 }
+
+@Test("reduce Money")
+func testReduceMoney() async throws {
+    let bank = Bank()
+    let result = bank.reduce(Money.dollar(1), to: "USD")
+    #expect(result.equals(Money.dollar(1)) == true, "reduce Money")
+}
