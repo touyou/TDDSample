@@ -1,11 +1,9 @@
-class WasRun:
+from testcase import TestCase
+
+class WasRun(TestCase):
     def __init__(self, name):
         self.wasRun = None
-        self.name = name
-
-    def run(self):
-        method = getattr(self, self.name)
-        method()
+        super().__init__(name)
 
     def testMethod(self):
         self.wasRun = 1
