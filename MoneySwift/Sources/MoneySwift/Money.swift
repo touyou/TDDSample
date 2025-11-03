@@ -12,6 +12,10 @@ class Money: Expression, CustomStringConvertible {
     return _amount == money._amount && _currency == money.currency()
   }
 
+  func reduce(to: String) -> Money {
+    return self
+  }
+
   func currency() -> String {
     return _currency
   }
