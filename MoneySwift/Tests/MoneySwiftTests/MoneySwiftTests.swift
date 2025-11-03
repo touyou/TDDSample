@@ -4,8 +4,8 @@ import Testing
 @Test("$5 * 2 = $10, Dollarの副作用どうする？")
 func testMultiplication() async throws {
     let five: Money = Money.dollar(5)
-    #expect(five.times(2).equals(Money.dollar(10)) == true, "$5 * 2 = 10")
-    #expect(five.times(3).equals(Money.dollar(15)) == true, "$5 * 3 = 15")
+    #expect(Money.dollar(10).equals(five.times(2)) == true, "$5 * 2 = 10")
+    #expect(Money.dollar(15).equals(five.times(3)) == true, "$5 * 3 = 15")
 }
 
 @Test("equals()")
@@ -41,7 +41,7 @@ func testPlusReturnsSum() async throws {
 
 @Test("reduce Sum")
 func testReduceSum() async throws {
-    let sum = Sum(augend: .dollar(3), addend: .dollar(4))
+    let sum = Sum(augend: Money.dollar(3), addend: Money.dollar(4))
     let bank = Bank()
     let result = bank.reduce(sum, to: "USD")
     #expect(result.equals(Money.dollar(7)) == true, "3 + 4 = 7")
@@ -70,8 +70,8 @@ func testIdentityRate() async throws {
 
 @Test("$5 + 10CHF = $10")
 func testMixedAddition() async throws {
-    let fiveBucks = Money.dollar(5)
-    let tenFrancs = Money.franc(10)
+    let fiveBucks: Expression = Money.dollar(5)
+    let tenFrancs: Expression = Money.franc(10)
     let bank = Bank()
     bank.addRate(from: "CHF", to: "USD", rate: 2)
     let result = bank.reduce(fiveBucks.plus(tenFrancs), to: "USD")
